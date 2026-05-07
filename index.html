@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Quiz App</title>
+  
+    
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="quiz-container">
+  <h2>Simple Quiz App</h2>
+  <div class="score" id="score">Score: 0/3</div>
+
+  <div id="quiz-box">
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <div id="feedback"></div>
+    <button id="nextBtn" class="hidden">Next Question</button>
+  </div>
+
+  <div id="result-box" class="hidden">
+    <h3>Quiz Completed!</h3>
+    <h2 id="finalScore"></h2>
+    <button onclick="restartQuiz()">Retake Test</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+    
+
+</body>
+</html>
