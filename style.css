@@ -45,7 +45,7 @@
     }
 
     .option:hover {
-      background: blue;
+      background: green;
     }
 
     .correct {
@@ -55,7 +55,7 @@
     }
 
     .wrong {
-      color: blue;
+      color: red;
       margin-top: 10px;
       font-weight: bold;
     }
@@ -71,7 +71,7 @@
     }
 
     button:hover {
-      background: #1565c0;
+      background: green;
     }
 
     .hidden {
