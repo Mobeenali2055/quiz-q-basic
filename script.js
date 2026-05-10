@@ -26,6 +26,7 @@
   const questionEl = document.getElementById("question");
   const optionsEl = document.getElementById("options");
   const feedbackEl = document.getElementById("feedback");
+  const checkBtn = document.getElementById("checkBtn");
   const nextBtn = document.getElementById("nextBtn");
   const scoreEl = document.getElementById("score");
   const resultBox = document.getElementById("result-box");
@@ -34,6 +35,7 @@
 
   function loadQuestion() {
     feedbackEl.innerHTML = "";
+    checkBtn.classList.add("hidden");
     nextBtn.classList.add("hidden");
 
     const current = quizData[currentQuestion];
@@ -44,26 +46,45 @@
       const btn = document.createElement("button");
       btn.classList.add("option");
       btn.textContent = option;
-      btn.onclick = () => selectAnswer(option);
+      btn.onclick = () => selectAnswer(btn, option);
       optionsEl.appendChild(btn);
     });
 
     scoreEl.textContent = `Score: ${score}/${quizData.length}`;
   }
 
-  function selectAnswer(selected) {
+  let selectedOption = null;
+
+  function selectAnswer(btn, option) {
+    // Remove selected class from all options
+    document.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+    
+    // Add selected class to clicked button
+    btn.classList.add("selected");
+    selectedOption = option;
+
+    // Show check button
+    checkBtn.classList.remove("hidden");
+  }
+
+  checkBtn.onclick = () => {
+    validateAnswer();
+  };
+
+  function validateAnswer() {
     const correct = quizData[currentQuestion].answer;
 
-    if (selected === correct) {
+    if (selectedOption === correct) {
       score++;
       feedbackEl.innerHTML = "<div class='correct'>Correct</div>";
     } else {
       feedbackEl.innerHTML = "<div class='wrong'>Wrong</div>";
     }
 
+    checkBtn.classList.add("hidden");
     nextBtn.classList.remove("hidden");
 
-    // disable options
+    // disable options (existing behavior for now)
     document.querySelectorAll(".option").forEach(btn => {
       btn.disabled = true;
     });

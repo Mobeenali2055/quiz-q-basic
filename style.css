@@ -41,7 +41,12 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       cursor: pointer;
-      
+    }
+
+    .option.selected {
+      background-color: #00008b !important;
+      color: white;
+      border-color: #00008b;
     }
 
     .option:hover {
