@@ -73,21 +73,37 @@
 
   function validateAnswer() {
     const correct = quizData[currentQuestion].answer;
+    const options = document.querySelectorAll(".option");
+    
+    let selectedBtn = null;
+    let correctBtn = null;
+
+    options.forEach(btn => {
+      if (btn.textContent === selectedOption) {
+        selectedBtn = btn;
+      }
+      if (btn.textContent === correct) {
+        correctBtn = btn;
+      }
+      // disable options
+      btn.disabled = true;
+    });
 
     if (selectedOption === correct) {
       score++;
       feedbackEl.innerHTML = "<div class='correct'>Correct</div>";
+      selectedBtn.classList.add("correct-answer");
     } else {
       feedbackEl.innerHTML = "<div class='wrong'>Wrong</div>";
+      if (selectedBtn) {
+        selectedBtn.classList.add("wrong-answer");
+      }
+      // Reveal correct answer
+      correctBtn.classList.add("correct-answer");
     }
 
     checkBtn.classList.add("hidden");
     nextBtn.classList.remove("hidden");
-
-    // disable options (existing behavior for now)
-    document.querySelectorAll(".option").forEach(btn => {
-      btn.disabled = true;
-    });
   }
 
   nextBtn.addEventListener("click", () => {
